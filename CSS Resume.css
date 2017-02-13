@@ -1,0 +1,61 @@
+/* CSS Document */
+		/*colors
+			lightblue:rgb(138, 162, 204)
+			darkblue:rgb(90, 122, 178)
+			yellow:rgb(218, 255, 126)
+			purple:rgb(178, 136, 129)
+			orange:rgb(255, 122, 101)
+		*/
+
+		#lightblue {background-color:#8AA2CC;}
+		#darkblue {background-color:#5A7AB2;}
+		#yellow {background-color:#DAFF7E;}
+		#purple {background-color:#B28881;}
+		#orange {background-color:#FF7A65;}
+
+		html,body,p,h1,h2,h3,section {font-family: 'Ek Mukta', sans-serif;}
+
+		h1{font-size: 24pt;
+			background-color:#5A7AB2}
+
+		h2 {font-size: 20pt;
+			border-bottom: 4px solid #5A7AB2;
+		}
+		
+		h3 {font-size: 18pt;
+			font-weight: bold;
+		}
+		h4::before {content: url('Maui16x16pixel.ico');
+		}
+
+		body {
+			font-size: 16pt;
+			margin-left: 1.0in;
+			padding: 2em 2em 2em 2em;
+			border: 4px solid #5A7AB2;
+			background-color:#B28881;
+			font-family: 'Ek Mukta', sans-serif;
+		}
+
+		ul {list-style-image: url('Maui16x16pixel.ico'); 
+			}
+		p {
+			margin-top: 6pt;	
+		}
+		
+		
+		.yellow-background {
+			margin-left: 1in;
+		}
+		.green span {
+			font-weight: bold;
+		}
+		.green {
+			border: 2px rgb(138, 162, 204);
+		}
+		.container > p {
+			
+		}
+	
+	
+
