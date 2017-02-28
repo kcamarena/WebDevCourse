@@ -1,0 +1,69 @@
+/* CSS Document */
+		/*colors
+			lightblue:rgb(138, 162, 204)
+			darkblue:rgb(90, 122, 178)
+			yellow:rgb(218, 255, 126)
+			purple:rgb(178, 136, 129)
+			orange:rgb(255, 122, 101)
+			screen resolution is 1366 x 768 on my Mac
+		*/
+
+		#lightblue {background-color:#8AA2CC;}
+		#darkblue {background-color:#5A7AB2;}
+		#yellow {background-color:#DAFF7E;}
+		#purple {background-color:#B28881;}
+		#orange {background-color:#FF7A65;}
+
+	img {float:none;
+			align-items:center;}
+
+	@media screen and (min-width: 480px) {
+    img {float:right;
+    border: 6px solid #5A7AB2;}}
+    
+		html,body,p,h1,h2,h3,section {font-family: 'Ek Mukta', sans-serif;}
+
+		#Specialties {text-align: justify-all;
+			color:#424242;
+			font-size: 22pt;
+		}
+		h1{font-size: 30pt;
+			background-color:#5A7AB2;
+			color:#DAFF7E;
+			}
+
+		h2{font-size: 26pt;
+			border-bottom: 4px solid #5A7AB2;
+			color: #5A7AB2;
+			}
+		
+		h3{font-size: 20pt;
+			font-weight: bolder;
+			color: #5A7AB2;
+		}
+		h4::before {content: url('Maui16x16pixel.ico')}
+
+		h4 {font-size: 18pt;
+			font-weight: normal;
+			color:#424242;
+			}
+
+		body {
+			font-size: 14pt;
+			margin-left: 1.0in;
+			padding: 2em 2em 2em 2em;
+			border: 4px solid #5A7AB2;
+			background-color:#B28881;
+			font-family: 'Ek Mukta', sans-serif;
+		}
+
+		ul {list-style-image: url('Maui16x16pixel.ico'); 
+			}
+		p {
+			margin-top: 6pt;	
+		}
+		
+		
+	
+	
+
