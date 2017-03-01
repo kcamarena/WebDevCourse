@@ -17,7 +17,6 @@
 <p id="tax"></p>
 <p id="total"></p>
 
-
 <script>
 <!--var order ("Line Items, "customerInfo)-->
 <!--var order (customerInfo[0(LineItem,partNumber,description...),1,2])__>
@@ -69,7 +68,6 @@ shipping = 5
 tax = 0.1*orderSubTotal
 total=orderSubTotal + shipping + tax
 
-
 document.getElementById("orderdate").innerHTML="Order Date: " + order.customerInfo.orderDate;
 document.getElementById("ordernumber").innerHTML= "Order Number: " + order.customerInfo.orderNumber;
 document.getElementById("name").innerHTML=order.customerInfo.fullName;
@@ -77,7 +75,8 @@ document.getElementById("address").innerHTML=order.customerInfo.address;
 document.getElementById("citystate").innerHTML=order.customerInfo.city + ", " + order.customerInfo.state + " " + order.customerInfo.zipCode;
 document.getElementById("phonenumber").innerHTML=order.customerInfo.phoneNumber;
 
-document.getElementById("lineItem1").innerHTML= order.lineItems[0].lineItem + ". P/N:" + order.lineItems[0].partNumber + " " + order.lineItems[0].description + " " + order.lineItems[0].size + " qty: " + order.lineItems[0].qty + " x $" + order.lineItems[0].unitPrice +"/ea" + " = $" + (order.lineItems[0].qty * order.lineItems[0].unitPrice);
+document.getElementById("lineItem1").innerHTML= order.lineItems[0].lineItem + ". P/N:" + order.lineItems[0].partNumber + " " + order.lineItems[0].description + " " + order.lineItems[0].size + " qty: " + order.lineItems[0].qty + " x $" + order.lineItems[0].unitPrice +"/ea" + " = $" + (order.lineItems[0].qty * order.lineItems[0].unitPrice);  
+
 document.getElementById("lineItem2").innerHTML= order.lineItems[1].lineItem + ". P/N:" + order.lineItems[1].partNumber + " " + order.lineItems[1].description + " " + order.lineItems[1].size + " qty: " + order.lineItems[1].qty + " x $" + order.lineItems[1].unitPrice +"/ea" + " = $" + (order.lineItems[1].qty * order.lineItems[1].unitPrice);
 
 document.getElementById("lineItem3").innerHTML= order.lineItems[2].lineItem + ". P/N:" + order.lineItems[2].partNumber + " " + order.lineItems[2].description + " " + order.lineItems[2].size + " qty: " + order.lineItems[2].qty + " x $" + order.lineItems[2].unitPrice +"/ea" + " = $" + (order.lineItems[2].qty * order.lineItems[2].unitPrice);
@@ -88,6 +87,30 @@ document.getElementById("tax").innerHTML= "Tax (10%): $" + tax;
 document.getElementById("total").innerHTML= "Total: $" + total;
 
 
+function validateForm() {
+    var x = document.forms["myform"]["fccnum"].value;
+    if (x == "");
+        alert("Credit Card Number must be filled out");
+        return false;
+    var y = document.forms["myform2"]["fexpry"].value;
+    if (y == "");
+        alert("Expiration Date must be filled out");
+        return false;
+    }
 </script>
+<body>
+
+<form id="myform" action="/echo.php"
+onsubmit="return validateForm()" method="post">
+Credit Card Number: <input type="text" Credit Card Number="fname">
+<input type="submit" value="Submit">
+</form>
+<form id="myform" action="/echo.php"
+onsubmit="return validateForm()" method="post">
+Expiration Date: <input type="Date" Expiration Date="fname">
+<input type="submit" value="Submit">
+</form>
+
 </body>
 </html>
+
