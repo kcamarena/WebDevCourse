@@ -1,0 +1,39 @@
+{
+   "lineItems": [
+      {"lineItem": 1,
+      "partNumber": "S12345",
+      "description": "Tshirt",
+      "size": "Small",
+      "qty": 5,
+      "unitPrice": 10,
+      "deleteLineItem": "False"
+      },
+      {"lineItem": 2,
+      "partNumber": "S12350",
+      "description": "Tshirt",
+      "size": "Medium",
+      "qty": 4,
+      "unitPrice": 20,
+      "deleteLineItem": "True"
+      },
+      {"lineItem": 3,
+      "partNumber": "S12355",
+      "description": "Tshirt",
+      "size": "Large",
+      "qty": 3,
+      "unitPrice": 30,
+      "deleteLineItem": "False"
+      },
+      ],
+  "customerInfo": 
+  {
+      "fullName": "Robert Argueta",
+      "address": "900 Snowy Field Lane",
+      "city": "Maui",
+      "state": "HI",
+      "zipCode": 96708,
+      "phoneNumber": "(818) 215-5128",
+      "orderNumber": "WS12859",
+      "orderDate": "February 2, 2017"
+   }
+}

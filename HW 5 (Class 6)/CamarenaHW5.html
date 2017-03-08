@@ -1,0 +1,126 @@
+<html>
+<body>
+
+<p> Camarena Clothes Company </p>
+<p id="orderdate"></p>
+<p id="ordernumber"></p>
+<p id="name"></p>
+<p id="address"></p>
+<p id="citystate"></p>
+<p id="phonenumber"></p>
+<p id="order"></p>
+<p id="lineItem1"></p>
+<p id="lineItem2"></p>
+<p id="lineItem3"></p>
+<p id="subTotal"></p>
+<p id="shipping"></p>
+<p id="tax"></p>
+<p id="total"></p>
+<p id="adjustment"></p>
+<p id="adjustedTotal"></p>
+<p id="delete"></p>
+<script>
+<!--var order ("Line Items, "customerInfo)-->
+<!--var order (customerInfo[0(LineItem,partNumber,description...),1,2])__>
+
+var order= {
+   "lineItems": [
+      {"lineItem": 1,
+      "partNumber": "S12345",
+      "description": "Tshirt",
+      "size": "Small",
+      "qty": 5,
+      "unitPrice": 10,
+      "deleteLineItem": "False"
+      },
+      {"lineItem": 2,
+      "partNumber": "S12350",
+      "description": "Tshirt",
+      "size": "Medium",
+      "qty": 4,
+      "unitPrice": 20,
+      "deleteLineItem": "True"
+      },
+      {"lineItem": 3,
+      "partNumber": "S12355",
+      "description": "Tshirt",
+      "size": "Large",
+      "qty": 3,
+      "unitPrice": 30,
+      "deleteLineItem": "False"
+      },
+      ],
+  "customerInfo": 
+  {
+      "fullName": "Robert Argueta",
+      "address": "900 Snowy Field Lane",
+      "city": "Maui",
+      "state": "HI",
+      "zipCode": 96708,
+      "phoneNumber": "(818) 215-5128",
+      "orderNumber": "WS12859",
+      "orderDate": "February 2, 2017"
+   }
+}
+
+
+orderSubTotal=(order.lineItems[0].qty * order.lineItems[0].unitPrice)+(order.lineItems[1].qty * order.lineItems[1].unitPrice)+(order.lineItems[2].qty * order.lineItems[2].unitPrice);
+
+shipping = 5
+tax = 0.1*orderSubTotal
+total=orderSubTotal + shipping + tax
+adjustment=-(order.lineItems[1].qty * order.lineItems[1].unitPrice)
+
+
+document.getElementById("orderdate").innerHTML="Order Date: " + order.customerInfo.orderDate;
+document.getElementById("ordernumber").innerHTML= "Order Number: " + order.customerInfo.orderNumber;
+document.getElementById("name").innerHTML=order.customerInfo.fullName;
+document.getElementById("address").innerHTML=order.customerInfo.address;
+document.getElementById("citystate").innerHTML=order.customerInfo.city + ", " + order.customerInfo.state + " " + order.customerInfo.zipCode;
+document.getElementById("phonenumber").innerHTML=order.customerInfo.phoneNumber;
+
+document.getElementById("lineItem1").innerHTML= order.lineItems[0].lineItem + ". P/N:" + order.lineItems[0].partNumber + " " + order.lineItems[0].description + " " + order.lineItems[0].size + " qty: " + order.lineItems[0].qty + " x $" + order.lineItems[0].unitPrice +"/ea" + " = $" + (order.lineItems[0].qty * order.lineItems[0].unitPrice);  
+
+/*if (order.lineItems[2].deleteLineItem = "True") {
+    document.getElementById("delete").innerHTML = "Delete Line Item";
+}; didn't work, but doesn't crash script.  Leaves message up */
+
+document.getElementById("lineItem2").innerHTML= order.lineItems[1].lineItem + ". P/N:" + order.lineItems[1].partNumber + " " + order.lineItems[1].description + " " + order.lineItems[1].size + " qty: " + order.lineItems[1].qty + " x $" + order.lineItems[1].unitPrice +"/ea" + " = $" + (order.lineItems[1].qty * order.lineItems[1].unitPrice);
+
+document.getElementById("lineItem3").innerHTML= order.lineItems[2].lineItem + ". P/N:" + order.lineItems[2].partNumber + " " + order.lineItems[2].description + " " + order.lineItems[2].size + " qty: " + order.lineItems[2].qty + " x $" + order.lineItems[2].unitPrice +"/ea" + " = $" + (order.lineItems[2].qty * order.lineItems[2].unitPrice);
+
+document.getElementById("subTotal").innerHTML="Sub Total: $" + orderSubTotal;
+document.getElementById("shipping").innerHTML="Shipping Cost: $" + shipping;
+document.getElementById("tax").innerHTML= "Tax (10%): $" + tax;
+document.getElementById("total").innerHTML= "Total: $" + total;
+document.getElementById("adjustment").innerHTML= "Adjustment " + "$" + adjustment;
+document.getElementById("adjustedTotal").innerHTML="Adjusted Total: $ " + (total + adjustment);
+
+function validateForm() {
+    var x = document.forms["myform"]["fccnum"].value;
+    if (x == "");
+        alert("Credit Card Number must be filled out");
+        return false;
+    var y = document.forms["myform2"]["fexpry"].value;
+    if (y == "");
+        alert("Expiration Date must be filled out");
+        return false;
+    }
+   
+</script>
+<body>
+
+<form id="myform" action="/echo.php"
+onsubmit="return validateForm()" method="post">
+Credit Card Number: <input type="text" Credit Card Number="fname">
+<input type="submit" value="Submit">
+</form>
+<form id="myform" action="/echo.php"
+onsubmit="return validateForm()" method="post">
+Expiration Date: <input type="Date" Expiration Date="fname">
+<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
