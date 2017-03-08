@@ -1,7 +1,7 @@
 <html>
 <body>
 
-<p> Camarena Clothes Company </p>
+<p>Camarena Clothes Company </p>
 <p id="orderdate"></p>
 <p id="ordernumber"></p>
 <p id="name"></p>
@@ -13,12 +13,12 @@
 <p id="lineItem2"></p>
 <p id="lineItem3"></p>
 <p id="subTotal"></p>
-<p id="shipping"></p>
-<p id="tax"></p>
-<p id="total"></p>
 <p id="adjustment"></p>
-<p id="adjustedTotal"></p>
-<p id="delete"></p>
+<p id="adjustedSubTotal"></p>
+<p id="tax"></p>
+<p id="shipping"></p>
+<p id="total"></p>
+</body>
 <script>
 <!--var order ("Line Items, "customerInfo)-->
 <!--var order (customerInfo[0(LineItem,partNumber,description...),1,2])__>
@@ -64,12 +64,17 @@ var order= {
 }
 
 
-orderSubTotal=(order.lineItems[0].qty * order.lineItems[0].unitPrice)+(order.lineItems[1].qty * order.lineItems[1].unitPrice)+(order.lineItems[2].qty * order.lineItems[2].unitPrice);
+lineItem1TotalPrice = order.lineItems[0].qty * order.lineItems[0].unitPrice;
+lineItem2TotalPrice = order.lineItems[1].qty * order.lineItems[1].unitPrice;
+lineItem3TotalPrice= order.lineItems[2].qty * order.lineItems[2].unitPrice;
 
-shipping = 5
-tax = 0.1*orderSubTotal
-total=orderSubTotal + shipping + tax
-adjustment=-(order.lineItems[1].qty * order.lineItems[1].unitPrice)
+orderSubTotal=lineItem1TotalPrice + lineItem2TotalPrice + lineItem3TotalPrice;
+adjustment=-lineItem2TotalPrice;
+adjustedSubTotal=orderSubTotal + adjustment;
+
+shipping = 5;
+tax = 0.1 * adjustedSubTotal;
+total=orderSubTotal + adjustment + shipping + tax;
 
 
 document.getElementById("orderdate").innerHTML="Order Date: " + order.customerInfo.orderDate;
@@ -79,22 +84,22 @@ document.getElementById("address").innerHTML=order.customerInfo.address;
 document.getElementById("citystate").innerHTML=order.customerInfo.city + ", " + order.customerInfo.state + " " + order.customerInfo.zipCode;
 document.getElementById("phonenumber").innerHTML=order.customerInfo.phoneNumber;
 
-document.getElementById("lineItem1").innerHTML= order.lineItems[0].lineItem + ". P/N:" + order.lineItems[0].partNumber + " " + order.lineItems[0].description + " " + order.lineItems[0].size + " qty: " + order.lineItems[0].qty + " x $" + order.lineItems[0].unitPrice +"/ea" + " = $" + (order.lineItems[0].qty * order.lineItems[0].unitPrice);  
+document.getElementById("lineItem1").innerHTML= order.lineItems[0].lineItem + ". P/N:" + order.lineItems[0].partNumber + " " + order.lineItems[0].description + " " + order.lineItems[0].size + " qty: " + order.lineItems[0].qty + " x $" + order.lineItems[0].unitPrice +"/ea" + " = $" + lineItem1TotalPrice;  
 
 /*if (order.lineItems[2].deleteLineItem = "True") {
     document.getElementById("delete").innerHTML = "Delete Line Item";
 }; didn't work, but doesn't crash script.  Leaves message up */
 
-document.getElementById("lineItem2").innerHTML= order.lineItems[1].lineItem + ". P/N:" + order.lineItems[1].partNumber + " " + order.lineItems[1].description + " " + order.lineItems[1].size + " qty: " + order.lineItems[1].qty + " x $" + order.lineItems[1].unitPrice +"/ea" + " = $" + (order.lineItems[1].qty * order.lineItems[1].unitPrice);
+document.getElementById("lineItem2").innerHTML= order.lineItems[1].lineItem + ". P/N:" + order.lineItems[1].partNumber + " " + order.lineItems[1].description + " " + order.lineItems[1].size + " qty: " + order.lineItems[1].qty + " x $" + order.lineItems[1].unitPrice +"/ea" + " = $" + + lineItem2TotalPrice;  
 
-document.getElementById("lineItem3").innerHTML= order.lineItems[2].lineItem + ". P/N:" + order.lineItems[2].partNumber + " " + order.lineItems[2].description + " " + order.lineItems[2].size + " qty: " + order.lineItems[2].qty + " x $" + order.lineItems[2].unitPrice +"/ea" + " = $" + (order.lineItems[2].qty * order.lineItems[2].unitPrice);
+document.getElementById("lineItem3").innerHTML= order.lineItems[2].lineItem + ". P/N:" + order.lineItems[2].partNumber + " " + order.lineItems[2].description + " " + order.lineItems[2].size + " qty: " + order.lineItems[2].qty + " x $" + order.lineItems[2].unitPrice +"/ea" + " = $" + lineItem3TotalPrice;  
 
 document.getElementById("subTotal").innerHTML="Sub Total: $" + orderSubTotal;
-document.getElementById("shipping").innerHTML="Shipping Cost: $" + shipping;
+document.getElementById("adjustment").innerHTML= "Adjustment: Cancel Line Item 2: " + "($" + adjustment + ") ";
+document.getElementById("adjustedSubTotal").innerHTML="Adjusted Subtotal: $ " + adjustedSubTotal;
 document.getElementById("tax").innerHTML= "Tax (10%): $" + tax;
+document.getElementById("shipping").innerHTML="Shipping Cost: $" + shipping;
 document.getElementById("total").innerHTML= "Total: $" + total;
-document.getElementById("adjustment").innerHTML= "Adjustment " + "$" + adjustment;
-document.getElementById("adjustedTotal").innerHTML="Adjusted Total: $ " + (total + adjustment);
 
 function validateForm() {
     var x = document.forms["myform"]["fccnum"].value;
