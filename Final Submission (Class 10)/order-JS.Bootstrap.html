@@ -19,21 +19,21 @@
 	   integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 		 crossorigin="anonymous">
 
-     <!<link rel="stylesheet" type="text/css" href="CSSorder.css"/>!>
+     <link rel="stylesheet" type="text/css" href="CSSorder3.css"/>
 
 <!Script info!>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-     </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+       </script>
 
-     <!-- Latest compiled and minified JavaScript -->
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous">
-     </script>
+      </script>
 
      <script type="text/javascript">
             
-            function calc_lineitem()
+            function calc()
             {
                 var price1 = 10;
                 var price2 = 20;
@@ -51,7 +51,7 @@
 
                 var sub_total = lineitem1cost+lineitem2cost+lineitem3cost;
                 var tax = 0.1*sub_total;
-                var total=sub_total+tax+shipping
+                var total=sub_total+tax+shipping;
 
                 document.getElementById('result1').value = "$ " + price1*qty1;
                 document.getElementById('result2').value = "$ " + price2*qty2;
@@ -64,7 +64,42 @@
             
             }
     </script>
+    <script>
+            function validateForm() 
+            {
+              var x = document.forms["myform"]["fccnum"].value;
+              if (x == "");
+              alert("Credit Card Number must be filled out");
+              return false;
+              
+              var y = document.forms["myform2"]["fexpry"].value;
+              if (y == "");
+              alert("Expiration Date must be filled out");
+              return false;
+          }
+    </script>
+
+
     
+    <!Was able to succesfully hide line items, but could not get it to subtract from total or have an option to restore the item once hidden
+        $(document).ready(function(){
+        $("button1").click(function(){
+        $("delete1").empty(".sel1a");
+        });
+        });
+
+        $(document).ready(function(){
+        $("button2").click(function(){
+        $("delete2").hide();
+        });
+        });
+
+        $(document).ready(function(){
+        $("button3").click(function(){
+        $("delete3").hide();
+        });
+        });!>
+
 </head>
 
 <body>
@@ -127,22 +162,22 @@
         Maui, HI 96708 </br>
         (818) 215-5128 </br></br>
 
-        <btn btn-default btn-xs onclick="calc_lineitem();"></button>
+        <btn btn-default btn-xs onclick="calc();"></button>
         <input type="text" id="sub_total"/></br>
 
-        <btn btn-default btn-xs onclick="calc_lineitem();"></button>
+        <btn btn-default btn-xs onclick="calc();"></button>
         <input type="text" id="shipping"/></br>
 
-        <btn btn-default btn-xs onclick="calc_lineitem();"></button>
+        <btn btn-default btn-xs onclick="calc();"></button>
         <input type="text" id="tax"/></br>
 
-        <btn btn-default btn-xs onclick="calc_lineitem();"></button>
+        <btn btn-default btn-xs onclick="calc();"></button>
         <input type="text" id="total"/></br>
 
-      </div>
+    </div>
 
 <!Line order information section!>
-<div class="col-md-8 col-xs-12 col-md-pull-4"><!Line Items!>
+  <div class="col-md-8 col-xs-12 col-md-pull-4 lineitem"><!Line Items!>
 
 <!Line Item Column Headers!>
     <div class="row">
@@ -150,16 +185,17 @@
       <div class="col-md-3 col-xs-4">Quantity</div>
       <div class="col-md-3 col-xs-4">Price</div>
     </div>  
-</br>
+    </br>
 
 <!Line Item 1!>
+  <delete1>
     <div class="row">
       <div class="col-md-6 col-xs-4">1. S12345, Tshirt (small), $10/each</div>
       <div class="col-md-3 col-xs-4">
-                     <form action="http://holub.com/echo.php" method="get">
+                     <form action="/echo.php" method="get">
                             <div class="form-inline">
                               <label for="sel1a"></label>
-                              <select class="form-control" id="sel1a" onchange="calc_lineitem();">
+                              <select class="form-control" id="sel1a" onchange="calc();">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -176,20 +212,22 @@
                     </form>
       </div>
       <div class="col-md-3 col-xs-4"> 
-      <btn btn-default btn-xs onclick="calc_lineitem();"></button>
+      <button1 btn-default onclick="calc();"></button>
         <input type="text" id="result1"/>
       </div>
     </div>
+    </delete1>
     </br>
 
 <!Line Item 2!>
+  <delete2>
     <div class="row">
       <div class="col-md-6 col-xs-4">2. S12350, Tshirt (medium), $20/each</div>
       <div class="col-md-3 col-xs-4">
-                     <form action="http://holub.com/echo.php" method="get">
+                     <form action="/echo.php" method="get">
                             <div class="form-inline">
                               <label for="sel1b"></label>
-                              <select class="form-control" id="sel1b" onchange="calc_lineitem();">
+                              <select class="form-control" id="sel1b" onchange="calc();">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -206,20 +244,22 @@
                      </form>
       </div>
       <div class="col-md-3 col-xs-4"> 
-      <btn btn-default onclick="calc_lineitem();"></button>
+      <button2 btn-default onclick="calc();"></button>
         <input type="text" id="result2"/>
       </div>
     </div>
+    </delete2>
     </br>
 
 <!Line Item 3!>
+    <delete3>
     <div class="row">
       <div class="col-md-6 col-xs-4">3. S12355, Tshirt (large), $30/each</div>
       <div class="col-md-3 col-xs-4">
-                     <form action="http://holub.com/echo.php" method="get">
+                     <form action="/echo.php" method="get">
                             <div class="form-inline">
                               <label for="sel1c"></label>
-                              <select class="form-control" id="sel1c" onchange="calc_lineitem();">
+                              <select class="form-control" id="sel1c" onchange="calc();">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -236,11 +276,35 @@
                      </form>
       </div>
       <div class="col-md-3 col-xs-4">
-      <btn btn-default onclick="calc_lineitem();"></button>
+      <button3 btn-default onclick="calc();"></button>
         <input type="text" id="result3"/>
       </div>
     </div>
+    <delete3>
     </br>
+    </div>
+    </br>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+
+        </br>
+        <form id="myform" action="/echo.php"
+        onsubmit="return validateForm()" method="post">
+        Credit Card Number: <input type="text" Credit Card Number="fname">
+        <input type="submit" value="Submit">
+        </form>
+        </br>
+
+        <form id="myform" action="/echo.php"
+        onsubmit="return validateForm()" method="post">
+        Expiration Date: <input type="Date" Expiration Date="fname">
+        <input type="submit" value="Submit">
+
+        </div>
+    </div>
 </div>
 </body>
 </html>
