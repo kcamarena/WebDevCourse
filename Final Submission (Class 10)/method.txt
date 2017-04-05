@@ -1,0 +1,9 @@
+1. Visit Webpage
+2. Sees products that are offered
+3. Fill out form to request quote on a dropdown menu of services, address info
+4. That form info creates a json file
+5. Go to "preview request" to see order details, can delete items at this time
+6. Confirmation page
+
+
+Don't forget to change all qty drop down to include value!
